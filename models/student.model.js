@@ -29,3 +29,5 @@ const studentSchema = mongoose.Schema(
     },
     {timestamps:true}
 );
+
+export const Student = mongoose.model('Student', studentSchema);

@@ -16,7 +16,7 @@ function Login() {
         <div>
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className='bg-red-200'>
                     <label>Email:</label>
                     <input
                         type="email"

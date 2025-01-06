@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
     return (
@@ -13,13 +14,14 @@ const LandingPage = () => {
                     </ul>
                 </nav>
             </header>
-            <main className="flex-grow flex flex-col items-center justify-center">
+            <main className="flex-grow flex flex-col items-center justify-center w-full h-full">
                 <h1 className="text-black text-4xl font-bold mb-4">Welcome to the Placement Portal</h1>
                 <h2 className="text-black text-2xl mb-4">Register for Placement</h2>
                 <p className="text-slate-400 mb-8">Join us and get placed in top companies.</p>
-                <button className="bg-blue-500 text-white px-4 py-2 rounded">Register</button>
+                
+                <Link to="/register" className="bg-blue-500 text-white px-4 py-2 rounded">Register</Link>
             </main>
-            <footer className="bg-slate-200 p-4 text-center">
+            <footer className="bg-slate-200 p-4 text-center w-full">
                 <p className="text-slate-400">© 2023 Placement Portal. All rights reserved.</p>
             </footer>
         </div>

@@ -2,6 +2,8 @@ import express from 'express';
 import {Admin} from '../models/admin.model.js';
 import jwt from 'jsonwebtoken';
 import zod  from 'zod';
+import { adminMiddleware } from '../middlewares/admin.js';
+import { Student } from '../models/student.model.js';
 export const adminRouter = express.Router();
 
 const adminLoginSchema = zod.object({
@@ -55,3 +57,28 @@ adminRouter.post('/login', async (req, res) => {
         return res.status(400).send(error);
     }
 });
+
+adminRouter.post('/verifyStudent/:id',adminMiddleware,async(req,res)=>{
+    console.log(req.params.id);
+    const studentId=req.params.id;
+    try {
+        const student=await Student.findById(studentId);
+        if(!student){
+            return res.status(404).send("Student not found");
+        }
+        if(student.isProfileVerified){
+            return res.status(400).send("Student already verified");
+        }
+        if(req.body.isProfileVerified){
+            student.isProfileVerified=true;
+            await student.save();
+        }
+        else{
+            await Student.findByIdAndDelete(studentId);
+            return res.status(400).send("Student not verified");
+        }
+    } catch (error) {
+        return res.status(400).send(error);
+    }
+    return res.status(200).send("Student Verified");
+})

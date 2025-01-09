@@ -54,3 +54,12 @@ studentRouter.post('/register',async (req, res) => {
         return res.status(400).json(error);
     }
 });
+
+studentRouter.get('/all', async (req, res) => {
+    try {
+        const students = await Student.find();
+        res.status(200).json(students);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});

@@ -56,7 +56,7 @@ const Registration_1 = () => {
             required
             className="w-4/5 p-3 mb-4 text-black border border-slate-300 rounded-md bg-white text-heading2 text-base focus:outline-none focus:border-blue-500 focus:shadow-md"
           />
-           <label
+          <label
             htmlFor="confirmPassword"
             className="text-lg mb-2 text-heading2 text-center font-bold"
           >

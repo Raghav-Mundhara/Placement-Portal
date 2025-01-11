@@ -1,0 +1,5 @@
+export const IntrestedIn = {
+    PLACEMENT : 'PLACEMENT',
+    HIGHER_STUDIES : 'HIGHER_STUDIES',
+    NOT_INTRESTED : 'NOT INTRESTED',
+};

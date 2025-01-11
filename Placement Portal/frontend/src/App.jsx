@@ -1,13 +1,13 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import RegistrationForm from "./pages/RegistrationForm";
-import Login from "./pages/Login";
+import Registration_1 from "./pages/Registration_1";
+import Registration_2 from "./pages/Registration_2";
 
 function App() {  
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<RegistrationForm />} />
+      <Route path="/" element={<Registration_1 />} />
+      <Route path="/register" element={<Registration_2 />} />
       </Routes>
     </BrowserRouter>
   )

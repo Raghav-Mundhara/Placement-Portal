@@ -3,8 +3,8 @@ import Button from '../components/button'
 
 function Home() {
   return (
-    <div className='bg-slate-900'>
-        <Button />
+    <div className='bg-slate-100'>
+        <Button text={"Good Morning"}/>
     </div>
   )
 }

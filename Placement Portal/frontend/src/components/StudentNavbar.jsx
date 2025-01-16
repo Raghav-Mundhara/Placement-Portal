@@ -33,14 +33,14 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <nav className="space-x-4 flex items-center">
-          <Link to="/" className=" text-black dark:text-white">
+          <Link to="/Studenthome" className=" text-black dark:text-white">
             Home
           </Link>
-          <Link to="/about" className=" text-black dark:text-white">
+          {/* <Link to="/about" className=" text-black dark:text-white">
             About Us
-          </Link>
-          <Link to="/placements" className="text-black dark:text-white">
-            Placements Stats
+          </Link> */}
+          <Link to="/placementsStatistics" className="text-black dark:text-white">
+            Placements Status
           </Link>
           <Link to="/mocktest" className=" text-black dark:text-white">
             Mock Test
@@ -48,10 +48,6 @@ const Navbar = () => {
           <Link to="/dashboard" className=" text-black dark:text-white">
             Profile
           </Link>
-          <Link to="/contact" className=" text-black dark:text-white">
-            Contact Us
-          </Link>
-
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}

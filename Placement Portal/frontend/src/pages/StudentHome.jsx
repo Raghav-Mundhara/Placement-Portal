@@ -265,105 +265,233 @@
 
 
 
-import React from 'react'
-import Footer from '../components/Footer'
-import Navbar from '../components/Navbar';
+// import React from 'react'
+// import Footer from '../components/Footer'
+// import Navbar from '../components/StudentNavbar';
+// import Announcements from '../components/Announcements';
 
+
+// function Home() {
+//   return (
+//     <div className='bg-slate-900'>
+//         <Navbar/>
+//         {/* <Announcements /> */}
+//          {/* Hero Section */}
+//       <section className="bg-slate-100 dark:bg-slate-900 py-20 text-center">
+//         <h2 className="text-4xl font-bold text-sky-500 dark:text-sky-400">
+//           Empowering Careers, Building Futures
+//         </h2>
+//         <p className="mt-4 text-lg text-slate-400">
+//           Join us to kickstart your career with the best opportunities.
+//         </p>
+//         <button className="mt-6 px-6 py-2 bg-sky-500 text-white rounded hover:bg-sky-400">
+//           Register Now
+//         </button>
+//       </section>
+
+//       {/* Stats Section */}
+//       <section className="py-12 bg-slate-100 dark:bg-slate-900">
+//         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+//           <div>
+//             <h3 className="text-3xl font-bold text-sky-500 dark:text-sky-400">
+//               100+
+//             </h3>
+//             <p className="text-slate-400">Companies</p>
+//           </div>
+//           <div>
+//             <h3 className="text-3xl font-bold text-sky-500 dark:text-sky-400">
+//               500+
+//             </h3>
+//             <p className="text-slate-400">Placements</p>
+//           </div>
+//           <div>
+//             <h3 className="text-3xl font-bold text-sky-500 dark:text-sky-400">
+//               50+
+//             </h3>
+//             <p className="text-slate-400">Workshops</p>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Features Section */}
+//       <section className="bg-slate-100 dark:bg-slate-900 py-12">
+//         <div className="container mx-auto text-center">
+//           <h2 className="text-2xl font-bold text-sky-500 dark:text-sky-400 mb-6">
+//             Why Choose Us?
+//           </h2>
+//           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+//             <div className="p-4 bg-slate-200 dark:bg-slate-800 shadow rounded">
+//               <h3 className="font-bold text-lg">Company Listings</h3>
+//               <p className="text-slate-400">
+//                 Browse top companies visiting our campus.
+//               </p>
+//             </div>
+//             <div className="p-4 bg-slate-200 dark:bg-slate-800 shadow rounded">
+//               <h3 className="font-bold text-lg">Student Profiles</h3>
+//               <p className="text-slate-400">
+//                 Showcase your skills and achievements.
+//               </p>
+//             </div>
+//             <div className="p-4 bg-slate-200 dark:bg-slate-800 shadow rounded">
+//               <h3 className="font-bold text-lg">Placement Reports</h3>
+//               <p className="text-slate-400">
+//                 Access detailed placement statistics.
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+
+//       {/* Testimonials Section */}
+//       <section className="py-12 bg-slate-100 dark:bg-slate-900">
+//         <div className="container mx-auto text-center">
+//           <h2 className="text-2xl font-bold text-sky-500 dark:text-sky-400 mb-6">
+//             What Our Students Say
+//           </h2>
+//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//             <blockquote className="bg-slate-200 dark:bg-slate-800 p-4 rounded shadow">
+//               "The placement portal helped me connect with top companies and
+//               secure my dream job!" - <strong>John Doe</strong>
+//             </blockquote>
+//             <blockquote className="bg-slate-200 dark:bg-slate-800 p-4 rounded shadow">
+//               "A seamless experience from registration to placement. Highly
+//               recommended!" - <strong>Jane Smith</strong>
+//             </blockquote>
+//           </div>
+//         </div>
+//       </section>
+//         <Footer />
+//     </div>
+//   );
+// };
+
+// export default Home;
+
+
+import React from 'react';
+import Footer from '../components/Footer';
+import Navbar from '../components/StudentNavbar';
+import Announcements from '../components/Announcements';
 
 function Home() {
+  const announcements = [
+    "Dolat Capital is hiring for freshers!",
+    "TCS Interview scheduled for 02/01/25.",
+    "Mock Test starts tomorrow!",
+    "Infosys campus drive next week.",
+    "Prepare for the Hackathon event on 10/01/25.",
+    "Resume submission deadline extended to 15/01/25.",
+    "Seminar on AI and ML scheduled for 12/01/25.",
+    "New coding challenges added to the portal.",
+  ];
+
   return (
-    <div className='bg-slate-900'>
-        <Navbar/>
-         {/* Hero Section */}
-      <section className="bg-slate-100 dark:bg-slate-900 py-20 text-center">
-        <h2 className="text-4xl font-bold text-sky-500 dark:text-sky-400">
-          Empowering Careers, Building Futures
-        </h2>
-        <p className="mt-4 text-lg text-slate-400">
-          Join us to kickstart your career with the best opportunities.
-        </p>
-        <button className="mt-6 px-6 py-2 bg-sky-500 text-white rounded hover:bg-sky-400">
-          Register Now
-        </button>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-12 bg-slate-100 dark:bg-slate-900">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div>
-            <h3 className="text-3xl font-bold text-sky-500 dark:text-sky-400">
-              100+
-            </h3>
-            <p className="text-slate-400">Companies</p>
-          </div>
-          <div>
-            <h3 className="text-3xl font-bold text-sky-500 dark:text-sky-400">
-              500+
-            </h3>
-            <p className="text-slate-400">Placements</p>
-          </div>
-          <div>
-            <h3 className="text-3xl font-bold text-sky-500 dark:text-sky-400">
-              50+
-            </h3>
-            <p className="text-slate-400">Workshops</p>
-          </div>
+    <div className="bg-slate-900">
+      <Navbar />
+      
+      {/* Layout with Announcements and Main Content */}
+      <div className="flex flex-col md:flex-row">
+        {/* Announcements Section */}
+        <div className="w-full md:w-1/4 bg-slate-100 p-4">
+          <Announcements announcements={announcements} />
         </div>
-      </section>
 
-      {/* Features Section */}
-      <section className="bg-slate-100 dark:bg-slate-900 py-12">
-        <div className="container mx-auto text-center">
-          <h2 className="text-2xl font-bold text-sky-500 dark:text-sky-400 mb-6">
-            Why Choose Us?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-4 bg-slate-200 dark:bg-slate-800 shadow rounded">
-              <h3 className="font-bold text-lg">Company Listings</h3>
-              <p className="text-slate-400">
-                Browse top companies visiting our campus.
-              </p>
-            </div>
-            <div className="p-4 bg-slate-200 dark:bg-slate-800 shadow rounded">
-              <h3 className="font-bold text-lg">Student Profiles</h3>
-              <p className="text-slate-400">
-                Showcase your skills and achievements.
-              </p>
-            </div>
-            <div className="p-4 bg-slate-200 dark:bg-slate-800 shadow rounded">
-              <h3 className="font-bold text-lg">Placement Reports</h3>
-              <p className="text-slate-400">
-                Access detailed placement statistics.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        {/* Main Content Section */}
+        <div className="w-full md:w-3/4">
+          {/* Hero Section */}
+          <section className="bg-slate-100 dark:bg-slate-900 py-20 text-center">
+            <h2 className="text-4xl font-bold text-sky-500 dark:text-sky-400">
+              Empowering Careers, Building Futures
+            </h2>
+            <p className="mt-4 text-lg text-slate-400">
+              Join us to kickstart your career with the best opportunities.
+            </p>
+            <button className="mt-6 px-6 py-2 bg-sky-500 text-white rounded hover:bg-sky-400">
+              Register Now
+            </button>
+          </section>
 
-      {/* Testimonials Section */}
-      <section className="py-12 bg-slate-100 dark:bg-slate-900">
-        <div className="container mx-auto text-center">
-          <h2 className="text-2xl font-bold text-sky-500 dark:text-sky-400 mb-6">
-            What Our Students Say
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <blockquote className="bg-slate-200 dark:bg-slate-800 p-4 rounded shadow">
-              "The placement portal helped me connect with top companies and
-              secure my dream job!" - <strong>John Doe</strong>
-            </blockquote>
-            <blockquote className="bg-slate-200 dark:bg-slate-800 p-4 rounded shadow">
-              "A seamless experience from registration to placement. Highly
-              recommended!" - <strong>Jane Smith</strong>
-            </blockquote>
-          </div>
+          {/* Stats Section */}
+          <section className="py-12 bg-slate-100 dark:bg-slate-900">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div>
+                <h3 className="text-3xl font-bold text-sky-500 dark:text-sky-400">
+                  100+
+                </h3>
+                <p className="text-slate-400">Companies</p>
+              </div>
+              <div>
+                <h3 className="text-3xl font-bold text-sky-500 dark:text-sky-400">
+                  500+
+                </h3>
+                <p className="text-slate-400">Placements</p>
+              </div>
+              <div>
+                <h3 className="text-3xl font-bold text-sky-500 dark:text-sky-400">
+                  50+
+                </h3>
+                <p className="text-slate-400">Workshops</p>
+              </div>
+            </div>
+          </section>
+
+          {/* Features Section */}
+          <section className="bg-slate-100 dark:bg-slate-900 py-12">
+            <div className="container mx-auto text-center">
+              <h2 className="text-2xl font-bold text-sky-500 dark:text-sky-400 mb-6">
+                Why Choose Us?
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="p-4 bg-slate-200 dark:bg-slate-800 shadow rounded">
+                  <h3 className="font-bold text-lg">Company Listings</h3>
+                  <p className="text-slate-400">
+                    Browse top companies visiting our campus.
+                  </p>
+                </div>
+                <div className="p-4 bg-slate-200 dark:bg-slate-800 shadow rounded">
+                  <h3 className="font-bold text-lg">Student Profiles</h3>
+                  <p className="text-slate-400">
+                    Showcase your skills and achievements.
+                  </p>
+                </div>
+                <div className="p-4 bg-slate-200 dark:bg-slate-800 shadow rounded">
+                  <h3 className="font-bold text-lg">Placement Reports</h3>
+                  <p className="text-slate-400">
+                    Access detailed placement statistics.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Testimonials Section */}
+          <section className="py-12 bg-slate-100 dark:bg-slate-900">
+            <div className="container mx-auto text-center">
+              <h2 className="text-2xl font-bold text-sky-500 dark:text-sky-400 mb-6">
+                What Our Students Say
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <blockquote className="bg-slate-200 dark:bg-slate-800 p-4 rounded shadow">
+                  "The placement portal helped me connect with top companies and
+                  secure my dream job!" - <strong>John Doe</strong>
+                </blockquote>
+                <blockquote className="bg-slate-200 dark:bg-slate-800 p-4 rounded shadow">
+                  "A seamless experience from registration to placement. Highly
+                  recommended!" - <strong>Jane Smith</strong>
+                </blockquote>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
-        <Footer />
+      </div>
+
+      <Footer />
     </div>
   );
-};
+}
 
 export default Home;
+
 
 
 

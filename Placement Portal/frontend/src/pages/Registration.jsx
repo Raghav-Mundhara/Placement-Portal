@@ -1,11 +1,11 @@
-import React from 'react'
+// import React from 'react'
 
-function Registration() {
-  return (
-    <div>
-      Registration
-    </div>
-  )
-}
+// function Registration() {
+//   return (
+//     <div>
+//       Registration
+//     </div>
+//   )
+// }
 
-export default Registration;
+// export default Registration;

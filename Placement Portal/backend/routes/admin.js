@@ -1,6 +1,5 @@
 import express from 'express';
 import {Admin} from '../models/admin.model.js';
-import { InterviewExperience } from '../models/interviewExperience.model.js';
 import jwt from 'jsonwebtoken';
 import zod  from 'zod';
 import { adminMiddleware } from '../middlewares/admin.js';
@@ -59,16 +58,6 @@ adminRouter.post('/login', async (req, res) => {
     }
 });
 
-adminRouter.get('/experiences', async (req, res) => {
-    try {
-        const experiences = await InterviewExperience.find().populate('studentId', 'name');
-
-        return res.status(200).json(experiences);
-    } catch(error){
-        res.status(500).json({error: "Failed to fetch experience", details: error.message });
-    }
-
-});
 adminRouter.post('/verifyStudent/:id',adminMiddleware,async(req,res)=>{
     console.log(req.params.id);
     const studentId=req.params.id;
@@ -93,3 +82,12 @@ adminRouter.post('/verifyStudent/:id',adminMiddleware,async(req,res)=>{
     }
     return res.status(200).send("Student Verified");
 })
+
+adminRouter.get('/experiences', async (req, res) => {
+    try {
+        const experiences = await InterviewExperience.find().populate('studentId', 'name');
+
+        return res.status(200).json(experiences);
+    } catch(error){
+        res.status(500).json({error: "Failed to fetch experience", details: error.message });
+    }});

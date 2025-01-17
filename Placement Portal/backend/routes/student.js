@@ -66,6 +66,15 @@ studentRouter.post('/register',async (req, res) => {
     }
 });
 
+studentRouter.get('/all', async (req, res) => {
+    try {
+        const students = await Student.find();
+        res.status(200).json(students);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+});
+
 studentRouter.post('/interview-exp', async (req, res) => {
     const parseResult = interviewExperienceSchema.safeParse(req.body);
    console.log(parseResult);

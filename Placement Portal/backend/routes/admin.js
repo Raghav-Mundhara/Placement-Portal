@@ -1,5 +1,6 @@
 import express from 'express';
 import {Admin} from '../models/admin.model.js';
+import { InterviewExperience } from '../models/interviewExperience.model.js';
 import jwt from 'jsonwebtoken';
 import zod  from 'zod';
 export const adminRouter = express.Router();
@@ -54,4 +55,15 @@ adminRouter.post('/login', async (req, res) => {
     }catch(error){
         return res.status(400).send(error);
     }
+});
+
+adminRouter.get('/experiences', async (req, res) => {
+    try {
+        const experiences = await InterviewExperience.find().populate('studentId', 'name');
+
+        return res.status(200).json(experiences);
+    } catch(error){
+        res.status(500).json({error: "Failed to fetch experience", details: error.message });
+    }
+
 });

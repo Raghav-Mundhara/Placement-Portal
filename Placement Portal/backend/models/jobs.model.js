@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Branches, Status } from "../utils/placementEnums";
+import { Branches, Status } from "../utils/placementEnums.js";
 
 const jobsSchema = new mongoose.Schema({
     companyName: {
@@ -49,19 +49,19 @@ const jobsSchema = new mongoose.Schema({
         },
         percentage_12: {
             type: Number,
-            required: true
+           
         },
         percentage_10: {
             type: Number,
-            required: true
+          
         },
         cgpa_12: {
             type: Number,
-            required: true
+          
         },
         cgpa_10: {
             type: Number,
-            required: true
+         
         },
         branches_allowed: {
             type: [String],

@@ -11,6 +11,9 @@ const jobsSchema = new mongoose.Schema({
         enum: Status,
         required: true
     },
+    description:{
+        type: String
+    },
     role: [{
 
         rolename: {

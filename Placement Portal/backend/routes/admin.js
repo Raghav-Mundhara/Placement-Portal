@@ -6,6 +6,7 @@ import { adminMiddleware } from '../middlewares/admin.js';
 import { Student } from '../models/student.model.js';
 import { Jobs } from '../models/jobs.model.js';
 import { Status, Branches } from '../utils/placementEnums.js';
+import bcrypt from 'bcrypt';
 export const adminRouter = express.Router();
 
 export const StatusEnum = zod.enum([
@@ -59,6 +60,17 @@ const jobsSchema = zod.object({
     })
 });
 
+
+const pcordSchema = zod.object({
+    name: zod.string().min(1, "Name is required"),
+    email: zod.string().email("Email is required"),
+    contact: zod.string().min(1, "Contact is required"),
+    password: zod.string().min(1, "Password is required"),
+    division: zod.string().min(1, "Division is required"),
+    year: zod.string().min(1, "Year is required"),
+    assignedCompanies: zod.array(zod.string()).optional()
+});
+
 adminRouter.post('/register', async (req, res) => {
     console.log(req.body);
     const { username, password } = req.body;
@@ -93,8 +105,7 @@ adminRouter.post('/login', async (req, res) => {
             res.status(404).send("Admin not found");
             return;
         }
-        const token = jwt.sign({ username: username }, process.env.JWT_SECRET);
-        req.headers.authorization = "Token " + token;
+        const token = jwt.sign({ id:admin.id ,username , role:"Admin"}, process.env.JWT_SECRET);
         return res.status(200).send("Token " + token);
     } catch (error) {
         return res.status(400).send(error);
@@ -151,4 +162,24 @@ adminRouter.post('/add-job', async (req, res) => {
         return res.status(500).json({ error: "Failed to add job", details: error.message });
     }
 
+});
+
+adminRouter.post('/add-pcord',adminMiddleware, async (req, res) => {
+    if(req.role !== "ADMIN"){
+        return res.status(401).send("Content Not Accessible");
+    }
+    const parseResult = pcordSchema.safeParse(req.body);
+    if (!parseResult.success) {
+        return res.status(400).json({ error: "Invalid pcord details", details: parseResult.error });
+    }
+    try {
+        const password = parseResult.data.password;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        parseResult.data.password = hashedPassword;
+        const pcord = new Admin(parseResult.data);
+        await pcord.save();
+        return res.status(200).json(pcord);
+    } catch (error) {
+        return res.status(500).json({ error: "Failed to add pcord", details: error.message });
+    }
 });

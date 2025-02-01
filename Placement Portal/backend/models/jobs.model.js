@@ -15,7 +15,6 @@ const jobsSchema = new mongoose.Schema({
         type: String
     },
     role: [{
-
         rolename: {
             type: String,
             required: true
@@ -80,9 +79,11 @@ const jobsSchema = new mongoose.Schema({
             type: Boolean,
             required: true
         }
-
+    },
+    isBlocking:{
+        type: Boolean,
+        default: false
     }
-
 })
 
 export const Jobs = mongoose.model('Jobs', jobsSchema);

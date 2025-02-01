@@ -35,18 +35,35 @@ const adminRegisterSchema = zod.object({
 });
 
 const jobsSchema = zod.object({
+    //id: zod.string().min(1, "Job ID is required"),
+    companyName: zod.string().min(1, "Company name is required"),  
+    status: StatusEnum, 
     companyName: zod.string().min(1, "Company name is required"),  // Ensures companyName is a non-empty string
     status: StatusEnum, // Enum for Status
     description: zod.string().optional(),  // Optional field for description
     role: zod.array(
+      zod.object({
+        rolename: zod.string().min(1, "Role name is required"), 
+        ctc: zod.string().min(1, "CTC is required") 
+      })
         zod.object({
             rolename: zod.string().min(1, "Role name is required"), // Non-empty string for role name
             ctc: zod.string().min(1, "CTC is required") // Non-empty string for CTC
         })
     ),
-    doc: zod.string().optional(),  // Optional field for document
-    domain: zod.string().optional(),  // Optional field for domain
+    doc: zod.string().optional(),  
+    domain: zod.string().optional(),  
     eligibility: zod.object({
+      dead_kts: zod.union([zod.number().min(0), zod.null()]),  
+      live_kts: zod.union([zod.number().min(0), zod.null()]),  
+      cgpa: zod.union([zod.number().min(0), zod.null()]),  
+      be_percentage: zod.union([zod.number().min(0), zod.null()]),  
+      percentage_12: zod.union([zod.number().min(0), zod.null()]),  
+      percentage_10: zod.union([zod.number().min(0), zod.null()]),  
+      cgpa_12: zod.union([zod.number().min(0), zod.null()]),  
+      cgpa_10: zod.union([zod.number().min(0), zod.null()]),  
+      branches_allowed: zod.union([zod.array(BranchesEnum), zod.null()]),  
+      gap: zod.union([zod.boolean(), zod.null()])  
         dead_kts: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
         live_kts: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
         cgpa: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
@@ -182,4 +199,36 @@ adminRouter.post('/add-pcord',adminMiddleware, async (req, res) => {
     } catch (error) {
         return res.status(500).json({ error: "Failed to add pcord", details: error.message });
     }
+});
+
+adminRouter.put('/update-job', async (req, res) => {
+    const parseResult = jobsSchema.safeParse(req.body);
+
+    if(!parseResult.success){
+        return res.status(400).json({error: "Invalid job details", details: parseResult.error});
+    }
+    
+
+    const { companyName, ...updatedData } = parseResult.data;
+    console.log(companyName);
+
+    if (!companyName) {
+        return res.status(400).json({ error: "Job Id is required" });
+    }
+
+    try {
+        const updatedJob = await Jobs.findOneAndUpdate(
+            {companyName: companyName}, 
+            { $set: updatedData },
+            { new: true }
+        );
+
+        if(!updatedJob){
+            return res.status(400).json({error: "Job not found"});
+        }
+        return res.status(500).json("message: Job updated successfully");
+    } catch(error){
+        return res.status(500).json({error: "Failed to update job", details: error.errors});
+    }
+ 
 });

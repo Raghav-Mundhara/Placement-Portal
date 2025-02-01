@@ -36,34 +36,34 @@ const adminRegisterSchema = zod.object({
 
 const jobsSchema = zod.object({
     //id: zod.string().min(1, "Job ID is required"),
-    companyName: zod.string().min(1, "Company name is required"),  
-    status: StatusEnum, 
+    companyName: zod.string().min(1, "Company name is required"),
+    status: StatusEnum,
     companyName: zod.string().min(1, "Company name is required"),  // Ensures companyName is a non-empty string
     status: StatusEnum, // Enum for Status
     description: zod.string().optional(),  // Optional field for description
     role: zod.array(
-      zod.object({
-        rolename: zod.string().min(1, "Role name is required"), 
-        ctc: zod.string().min(1, "CTC is required") 
-      })
+        zod.object({
+            rolename: zod.string().min(1, "Role name is required"),
+            ctc: zod.string().min(1, "CTC is required")
+        }),
         zod.object({
             rolename: zod.string().min(1, "Role name is required"), // Non-empty string for role name
             ctc: zod.string().min(1, "CTC is required") // Non-empty string for CTC
         })
     ),
-    doc: zod.string().optional(),  
-    domain: zod.string().optional(),  
+    doc: zod.string().optional(),
+    domain: zod.string().optional(),
     eligibility: zod.object({
-      dead_kts: zod.union([zod.number().min(0), zod.null()]),  
-      live_kts: zod.union([zod.number().min(0), zod.null()]),  
-      cgpa: zod.union([zod.number().min(0), zod.null()]),  
-      be_percentage: zod.union([zod.number().min(0), zod.null()]),  
-      percentage_12: zod.union([zod.number().min(0), zod.null()]),  
-      percentage_10: zod.union([zod.number().min(0), zod.null()]),  
-      cgpa_12: zod.union([zod.number().min(0), zod.null()]),  
-      cgpa_10: zod.union([zod.number().min(0), zod.null()]),  
-      branches_allowed: zod.union([zod.array(BranchesEnum), zod.null()]),  
-      gap: zod.union([zod.boolean(), zod.null()])  
+        dead_kts: zod.union([zod.number().min(0), zod.null()]),
+        live_kts: zod.union([zod.number().min(0), zod.null()]),
+        cgpa: zod.union([zod.number().min(0), zod.null()]),
+        be_percentage: zod.union([zod.number().min(0), zod.null()]),
+        percentage_12: zod.union([zod.number().min(0), zod.null()]),
+        percentage_10: zod.union([zod.number().min(0), zod.null()]),
+        cgpa_12: zod.union([zod.number().min(0), zod.null()]),
+        cgpa_10: zod.union([zod.number().min(0), zod.null()]),
+        branches_allowed: zod.union([zod.array(BranchesEnum), zod.null()]),
+        gap: zod.union([zod.boolean(), zod.null()]),
         dead_kts: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
         live_kts: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
         cgpa: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
@@ -122,7 +122,7 @@ adminRouter.post('/login', async (req, res) => {
             res.status(404).send("Admin not found");
             return;
         }
-        const token = jwt.sign({ id:admin.id ,username , role:"Admin"}, process.env.JWT_SECRET);
+        const token = jwt.sign({ id: admin.id, username, role: "Admin" }, process.env.JWT_SECRET);
         return res.status(200).send("Token " + token);
     } catch (error) {
         return res.status(400).send(error);
@@ -181,8 +181,8 @@ adminRouter.post('/add-job', async (req, res) => {
 
 });
 
-adminRouter.post('/add-pcord',adminMiddleware, async (req, res) => {
-    if(req.role !== "ADMIN"){
+adminRouter.post('/add-pcord', adminMiddleware, async (req, res) => {
+    if (req.role !== "ADMIN") {
         return res.status(401).send("Content Not Accessible");
     }
     const parseResult = pcordSchema.safeParse(req.body);
@@ -204,10 +204,10 @@ adminRouter.post('/add-pcord',adminMiddleware, async (req, res) => {
 adminRouter.put('/update-job', async (req, res) => {
     const parseResult = jobsSchema.safeParse(req.body);
 
-    if(!parseResult.success){
-        return res.status(400).json({error: "Invalid job details", details: parseResult.error});
+    if (!parseResult.success) {
+        return res.status(400).json({ error: "Invalid job details", details: parseResult.error });
     }
-    
+
 
     const { companyName, ...updatedData } = parseResult.data;
     console.log(companyName);
@@ -218,17 +218,17 @@ adminRouter.put('/update-job', async (req, res) => {
 
     try {
         const updatedJob = await Jobs.findOneAndUpdate(
-            {companyName: companyName}, 
+            { companyName: companyName },
             { $set: updatedData },
             { new: true }
         );
 
-        if(!updatedJob){
-            return res.status(400).json({error: "Job not found"});
+        if (!updatedJob) {
+            return res.status(400).json({ error: "Job not found" });
         }
         return res.status(500).json("message: Job updated successfully");
-    } catch(error){
-        return res.status(500).json({error: "Failed to update job", details: error.errors});
+    } catch (error) {
+        return res.status(500).json({ error: "Failed to update job", details: error.errors });
     }
- 
+
 });

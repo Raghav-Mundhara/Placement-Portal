@@ -12,12 +12,12 @@ const jobsSchema = new mongoose.Schema({
         required: true
     },
     role: [{
-        rolename:{
-            type: String,
+        rolename: {
+            type: String, // 'SDE', 'Analyst', 'Consultant'
             required: true
         },
         ctc: {
-            type: String,
+            type: String, // '10 LPA', '15 LPA'
             required: true
         }
     }],
@@ -39,8 +39,8 @@ const jobsSchema = new mongoose.Schema({
             required: true
         },
         cgpa: {
-             type: Number,
-             required: true
+            type: Number,
+            required: true
         },
         be_percentage: {
             type: Number,
@@ -48,19 +48,15 @@ const jobsSchema = new mongoose.Schema({
         },
         percentage_12: {
             type: Number,
-           
         },
         percentage_10: {
             type: Number,
-          
         },
         cgpa_12: {
             type: Number,
-          
         },
         cgpa_10: {
             type: Number,
-         
         },
         branches_allowed: {
             type: [String],
@@ -71,9 +67,7 @@ const jobsSchema = new mongoose.Schema({
             type: Boolean,
             required: true
         }
-
     }
-    
-}) 
+})
 
 export const Jobs = mongoose.model('Jobs', jobsSchema);

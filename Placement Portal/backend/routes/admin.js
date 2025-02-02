@@ -68,16 +68,6 @@ const jobsSchema = zod.object({
         cgpa_10: zod.union([zod.number().min(0), zod.null()]),
         branches_allowed: zod.union([zod.array(BranchesEnum), zod.null()]),
         gap: zod.union([zod.boolean(), zod.null()]),
-        dead_kts: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
-        live_kts: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
-        cgpa: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
-        be_percentage: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
-        percentage_12: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
-        percentage_10: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
-        cgpa_12: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
-        cgpa_10: zod.union([zod.number().min(0), zod.null()]),  // Allow null or number
-        branches_allowed: zod.union([zod.array(BranchesEnum), zod.null()]),
-        gap: zod.union([zod.boolean(), zod.null()])
     })
 });
 
@@ -183,7 +173,6 @@ adminRouter.post('/add-job', async (req, res) => {
 
 
     if (!parseResult.success) {
-        return res.status(400).json({ error: "Invalid job details", details: parseResult.error });
         return res.status(400).json({ error: "Invalid job details", details: parseResult.error });
     }
 

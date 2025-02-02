@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-import { IntrestedIn } from "../utils/placementEnums.js";
-import { boolean } from "zod";
+import { IntrestedIn} from "../utils/placementEnums.js";
 
 const studentSchema = new mongoose.Schema({
     vesEmail:{
@@ -11,7 +10,15 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
+    firstName: {
+        type: String,
+        required: true
+    },
+    middleName: {
+        type: String,
+        required: true
+    },
+    lastName: {
         type: String,
         required: true
     },
@@ -22,6 +29,10 @@ const studentSchema = new mongoose.Schema({
     contactNumber:{
         type: Number,
         required: true
+    },
+    alternativeContactNumber:{
+        type: Number,
+        required: false
     },
     rollNo: {
         type: String,
@@ -64,12 +75,44 @@ const studentSchema = new mongoose.Schema({
     kts:[
         {
             sem: Number,
-            count: Number
+            count: Number,
         }
     ],
+    liveKTs:{
+        type: Number,
+        required: true
+    },
+    deadKTs:{
+        type: Number,
+        required: true
+    },
     marksInPercentage:{
         type: Number,
         required: true
+    },
+    percentageIn12th:{
+        type: Number,
+        required: false
+    },
+    percentageIn10th:{
+        type: Number,
+        required: false
+    },
+    CET:{
+        type: String,
+        required: false
+    },
+    JEE:{
+        type: String,
+        required: false
+    },
+    gap:{
+        type: Boolean,
+        required: true
+    },
+    DiplomaPercentage:{
+        type: Number,
+        required: false
     },
     intrestedIn:{
         type: [String],

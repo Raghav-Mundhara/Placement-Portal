@@ -3,6 +3,7 @@ import { connectDB } from './db/db.js';
 import dotenv from "dotenv";
 import { adminRouter } from './routes/admin.js';
 import { studentRouter } from './routes/student.js';
+import quizRouter from './routes/quiz.js';
 dotenv.config();
 const app = express();
 app.use(express.json());
@@ -11,6 +12,7 @@ connectDB();
 
 app.use('/admin',adminRouter);
 app.use('/student',studentRouter);
+app.use('/quiz',quizRouter);
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

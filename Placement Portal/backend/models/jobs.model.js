@@ -11,6 +11,9 @@ const jobsSchema = new mongoose.Schema({
         enum: Status, // ['DREAM', 'NON_DREAM']
         required: true
     },
+    description:{
+        type: String
+    },
     role: [{
         rolename: {
             type: String, // 'SDE', 'Analyst', 'Consultant'
@@ -19,7 +22,12 @@ const jobsSchema = new mongoose.Schema({
         ctc: {
             type: String, // '10 LPA', '15 LPA'
             required: true
-        }
+        },
+        studentsEnrolled: {
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: 'Student',
+            required: false
+        },
     }],
     doc: {
         type: String,
@@ -67,6 +75,10 @@ const jobsSchema = new mongoose.Schema({
             type: Boolean,
             required: true
         }
+    },
+    isBlocking:{
+        type: Boolean,
+        default: false
     }
 })
 

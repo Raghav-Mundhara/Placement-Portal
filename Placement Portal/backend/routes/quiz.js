@@ -22,7 +22,8 @@ const getQuestions = async (req, res) => {
             //console.log(aptitudeQues);  
 
             const aptitudeQues = [...aptitudeQuesSet];
-            return res.json(aptitudeQues);
+            const result = aptitudeQues.map(convertToModelFormat);
+            return res.json(result);
         } else {
 
             const quiz_topic = await Quiz.findOne({ topic: topic });
@@ -59,4 +60,19 @@ const generateRandomQuestion = (questions) => {
 
 quizRouter.get('/:topic', getQuestions);
 
+const convertToModelFormat = (data) => {
+    return {
+        question: data.question,
+        code: "",  // No code in the given response, so keeping it empty
+        options: {
+            a: data.options[0],
+            b: data.options[1],
+            c: data.options[2],
+            d: data.options[3]
+        },
+        answer: Object.keys({ a: data.options[0], b: data.options[1], c: data.options[2], d: data.options[3] })
+            .find(key => ({ a: data.options[0], b: data.options[1], c: data.options[2], d: data.options[3] })[key] === data.answer),
+        explanation: data.explanation
+    };
+};
 export default quizRouter;

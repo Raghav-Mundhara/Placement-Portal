@@ -4,7 +4,8 @@ import AdminVerificationDashboard from './pages/AdminVerificationDashboard';
 import StudentProfile from './pages/StudentProfile';
 import StudentVerification from './pages/StudentVerification';
 import StudentPerformance from './pages/StudentPerformance';
-import StudentDataPage from './pages/StudentDataPage'
+import StudentDataPage from './pages/StudentDataPage';
+import QuizCategories from './pages/QuizCategories';
 
 
 function App() {  
@@ -16,6 +17,7 @@ function App() {
         <Route path="/student-profile" element={<StudentProfile />} />
         <Route path="/student-performance" element={<StudentPerformance />} />
         <Route path="/student-data" element={<StudentDataPage />} />
+        <Route path="/quiz" element={<QuizCategories />} />
       </Routes>
     </BrowserRouter>
   )

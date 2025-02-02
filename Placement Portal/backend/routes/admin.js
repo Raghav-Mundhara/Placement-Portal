@@ -139,8 +139,7 @@ adminRouter.post('/verifyStudent/:id', adminMiddleware, async (req, res) => {
         if (student.isProfileVerified) {
             return res.status(400).send("Student already verified");
         }
-        if (req.body.isProfileVerified) {
-            student.isProfileVerified = true;
+        
         if (req.body.isProfileVerified) {
             student.isProfileVerified = true;
             await student.save();
@@ -149,7 +148,7 @@ adminRouter.post('/verifyStudent/:id', adminMiddleware, async (req, res) => {
             await Student.findByIdAndDelete(studentId);
             return res.status(400).send("Student not verified");
         }
-    } }catch (error) {
+    }catch (error) {
         return res.status(400).send(error);
     }
     return res.status(200).send("Student Verified");
@@ -225,7 +224,6 @@ adminRouter.put('/update-job', async (req, res) => {
     try {
         const updatedJob = await Jobs.findOneAndUpdate(
             { companyName: companyName },
-            { companyName: companyName },
             { $set: updatedData },
             { new: true }
         );
@@ -237,6 +235,5 @@ adminRouter.put('/update-job', async (req, res) => {
     } catch (error) {
         return res.status(500).json({ error: "Failed to update job", details: error.errors });
     }
-
 
 });

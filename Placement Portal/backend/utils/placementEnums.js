@@ -1,7 +1,7 @@
 export const IntrestedIn = {
     PLACEMENT : 'PLACEMENT',
     HIGHER_STUDIES : 'HIGHER_STUDIES',
-    NOT_INTRESTED : 'NOT INTRESTED',
+    NOT_INTRESTED : 'NOT_INTRESTED',
 };
 
 export const Status = {

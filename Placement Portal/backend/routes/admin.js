@@ -59,6 +59,8 @@ const jobsSchema = zod.object({
     })
 });
 
+
+//http://localhost:3000/admin/register
 adminRouter.post('/register', async (req, res) => {
     console.log(req.body);
     const { username, password } = req.body;
@@ -78,6 +80,8 @@ adminRouter.post('/register', async (req, res) => {
     }
 });
 
+
+//Admin Login
 adminRouter.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const parseResult = adminLoginSchema.safeParse(req.body);
@@ -101,6 +105,7 @@ adminRouter.post('/login', async (req, res) => {
     }
 });
 
+//Verify Student
 adminRouter.post('/verifyStudent/:id', adminMiddleware, async (req, res) => {
     console.log(req.params.id);
     const studentId = req.params.id;
@@ -126,6 +131,7 @@ adminRouter.post('/verifyStudent/:id', adminMiddleware, async (req, res) => {
     return res.status(200).send("Student Verified");
 })
 
+// Get all interview experiences
 adminRouter.get('/experiences', async (req, res) => {
     try {
         const experiences = await InterviewExperience.find().populate('studentId', 'name');
@@ -136,6 +142,7 @@ adminRouter.get('/experiences', async (req, res) => {
     }
 });
 
+// Post a new job
 adminRouter.post('/add-job', async (req, res) => {
     const parseResult = jobsSchema.safeParse(req.body);
 
@@ -153,6 +160,7 @@ adminRouter.post('/add-job', async (req, res) => {
 
 });
 
+// Update a job
 adminRouter.put('/update-job', async (req, res) => {
     const parseResult = jobsSchema.safeParse(req.body);
 

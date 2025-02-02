@@ -8,11 +8,10 @@ const jobsSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: Status,
+        enum: Status, // ['DREAM', 'NON_DREAM']
         required: true
     },
     role: [{
-        
         rolename:{
             type: String,
             required: true

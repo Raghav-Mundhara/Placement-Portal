@@ -1,6 +1,8 @@
 import express from 'express';
 import { Admin } from '../models/admin.model.js';
+import { Admin } from '../models/admin.model.js';
 import jwt from 'jsonwebtoken';
+import zod from 'zod';
 import zod from 'zod';
 import { adminMiddleware } from '../middlewares/admin.js';
 import { Student } from '../models/student.model.js';
@@ -13,8 +15,18 @@ export const StatusEnum = zod.enum([
     'DREAM',
     'NON_DREAM'
 ])
+    'DREAM',
+    'NON_DREAM'
+])
 
 export const BranchesEnum = zod.enum([
+    'CMPN',
+    'INFT',
+    'EXTC',
+    'AIDS',
+    'ECS',
+    'AURO',
+    'MCA'
     'CMPN',
     'INFT',
     'EXTC',
@@ -53,6 +65,8 @@ const jobsSchema = zod.object({
     ),
     doc: zod.string().optional(),
     domain: zod.string().optional(),
+    doc: zod.string().optional(),
+    domain: zod.string().optional(),
     eligibility: zod.object({
         dead_kts: zod.union([zod.number().min(0), zod.null()]),
         live_kts: zod.union([zod.number().min(0), zod.null()]),
@@ -76,6 +90,7 @@ const jobsSchema = zod.object({
         gap: zod.union([zod.boolean(), zod.null()])
     })
 });
+});
 
 
 const pcordSchema = zod.object({
@@ -93,8 +108,10 @@ adminRouter.post('/register', async (req, res) => {
     const { username, password } = req.body;
     const parseResult = adminRegisterSchema.safeParse(req.body);
     if (!parseResult.success) {
+    if (!parseResult.success) {
         return res.status(400).send(parseResult.error);
     }
+    try {
     try {
         const admin = new Admin({
             username: username,
@@ -102,6 +119,7 @@ adminRouter.post('/register', async (req, res) => {
         });
         await admin.save();
         return res.status(201).send(admin);
+    } catch (error) {
     } catch (error) {
         return res.status(400).send(error);
     }
@@ -111,10 +129,16 @@ adminRouter.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const parseResult = adminLoginSchema.safeParse(req.body);
     if (!parseResult.success) {
+    if (!parseResult.success) {
         return res.status(400).send(parseResult.error);
     }
     try {
+    try {
         const admin = await Admin.findOne({
+            username: username,
+            password: password,
+        });
+        if (!admin) {
             username: username,
             password: password,
         });
@@ -125,25 +149,34 @@ adminRouter.post('/login', async (req, res) => {
         const token = jwt.sign({ id: admin.id, username, role: "Admin" }, process.env.JWT_SECRET);
         return res.status(200).send("Token " + token);
     } catch (error) {
+    } catch (error) {
         return res.status(400).send(error);
     }
 });
 
 adminRouter.post('/verifyStudent/:id', adminMiddleware, async (req, res) => {
+adminRouter.post('/verifyStudent/:id', adminMiddleware, async (req, res) => {
     console.log(req.params.id);
     const studentId = req.params.id;
+    const studentId = req.params.id;
     try {
+        const student = await Student.findById(studentId);
+        if (!student) {
         const student = await Student.findById(studentId);
         if (!student) {
             return res.status(404).send("Student not found");
         }
         if (student.isProfileVerified) {
+        if (student.isProfileVerified) {
             return res.status(400).send("Student already verified");
         }
         if (req.body.isProfileVerified) {
             student.isProfileVerified = true;
+        if (req.body.isProfileVerified) {
+            student.isProfileVerified = true;
             await student.save();
         }
+        else {
         else {
             await Student.findByIdAndDelete(studentId);
             return res.status(400).send("Student not verified");
@@ -163,11 +196,17 @@ adminRouter.get('/experiences', async (req, res) => {
         res.status(500).json({ error: "Failed to fetch experience", details: error.message });
     }
 });
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch experience", details: error.message });
+    }
+});
 
 adminRouter.post('/add-job', async (req, res) => {
     const parseResult = jobsSchema.safeParse(req.body);
 
+
     if (!parseResult.success) {
+        return res.status(400).json({ error: "Invalid job details", details: parseResult.error });
         return res.status(400).json({ error: "Invalid job details", details: parseResult.error });
     }
 
@@ -175,6 +214,8 @@ adminRouter.post('/add-job', async (req, res) => {
         const job = new Jobs(parseResult.data);
         await job.save();
         return res.status(200).json(job);
+    } catch (error) {
+        return res.status(500).json({ error: "Failed to add job", details: error.message });
     } catch (error) {
         return res.status(500).json({ error: "Failed to add job", details: error.message });
     }
@@ -209,6 +250,7 @@ adminRouter.put('/update-job', async (req, res) => {
     }
 
 
+
     const { companyName, ...updatedData } = parseResult.data;
     console.log(companyName);
 
@@ -219,10 +261,13 @@ adminRouter.put('/update-job', async (req, res) => {
     try {
         const updatedJob = await Jobs.findOneAndUpdate(
             { companyName: companyName },
+            { companyName: companyName },
             { $set: updatedData },
             { new: true }
         );
 
+        if (!updatedJob) {
+            return res.status(400).json({ error: "Job not found" });
         if (!updatedJob) {
             return res.status(400).json({ error: "Job not found" });
         }
@@ -230,5 +275,6 @@ adminRouter.put('/update-job', async (req, res) => {
     } catch (error) {
         return res.status(500).json({ error: "Failed to update job", details: error.errors });
     }
+
 
 });

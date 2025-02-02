@@ -42,7 +42,7 @@ const Navbar = () => {
           <Link to="/placement-statistics" className="text-black dark:text-white">
             Placements Stats
           </Link>
-          <Link to="/mocktest" className=" text-black dark:text-white">
+          <Link to="/quiz-categories" className=" text-black dark:text-white">
             Mock Test
           </Link>
           <Link to="/student-profile" className=" text-black dark:text-white">

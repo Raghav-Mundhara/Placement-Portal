@@ -87,7 +87,7 @@ const AdminNavbar = () => {
             {isTodoDropdownOpen && (
               <div className="absolute right-0 mt-2 bg-white dark:text-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 shadow rounded-md py-2 w-48">
                 <Link
-                  to="/student-verification"
+                  to="/admin-verification-dashboard"
                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-slate-700"
                 >
                   Student Verification

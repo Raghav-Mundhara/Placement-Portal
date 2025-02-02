@@ -18,6 +18,7 @@ import UploadExperience from './pages/UploadExperience'
 import ViewExperience from './pages/ViewExperience'
 import OfferLetters from './pages/OfferLetters'
 import PlacementStatistics from './pages/PlacementStatistics'
+import QuizCategories from './pages/QuizCategories'
 
 
 function App() {  
@@ -43,6 +44,7 @@ function App() {
         <Route path="/student-offer-letters" element={<OfferLetters />} />
         <Route path="/placement-statistics" element={<PlacementStatistics />} />
         <Route path="/admin-placement-statistics" element={<PlacementStatistics />} />
+        <Route path="/quiz-categories" element={<QuizCategories />} />
 
       
       </Routes>
@@ -50,3 +52,6 @@ function App() {
   )
 }
 export default App
+
+
+

@@ -15,18 +15,8 @@ export const StatusEnum = zod.enum([
     'DREAM',
     'NON_DREAM'
 ])
-    'DREAM',
-    'NON_DREAM'
-])
 
 export const BranchesEnum = zod.enum([
-    'CMPN',
-    'INFT',
-    'EXTC',
-    'AIDS',
-    'ECS',
-    'AURO',
-    'MCA'
     'CMPN',
     'INFT',
     'EXTC',
@@ -90,7 +80,6 @@ const jobsSchema = zod.object({
         gap: zod.union([zod.boolean(), zod.null()])
     })
 });
-});
 
 
 const pcordSchema = zod.object({
@@ -108,10 +97,8 @@ adminRouter.post('/register', async (req, res) => {
     const { username, password } = req.body;
     const parseResult = adminRegisterSchema.safeParse(req.body);
     if (!parseResult.success) {
-    if (!parseResult.success) {
         return res.status(400).send(parseResult.error);
     }
-    try {
     try {
         const admin = new Admin({
             username: username,
@@ -119,7 +106,6 @@ adminRouter.post('/register', async (req, res) => {
         });
         await admin.save();
         return res.status(201).send(admin);
-    } catch (error) {
     } catch (error) {
         return res.status(400).send(error);
     }
@@ -129,44 +115,34 @@ adminRouter.post('/login', async (req, res) => {
     const { username, password } = req.body;
     const parseResult = adminLoginSchema.safeParse(req.body);
     if (!parseResult.success) {
-    if (!parseResult.success) {
         return res.status(400).send(parseResult.error);
     }
-    try {
     try {
         const admin = await Admin.findOne({
             username: username,
             password: password,
         });
-        if (!admin) {
-            username: username,
-            password: password,
-        });
+        
         if (!admin) {
             res.status(404).send("Admin not found");
             return;
         }
         const token = jwt.sign({ id: admin.id, username, role: "Admin" }, process.env.JWT_SECRET);
         return res.status(200).send("Token " + token);
-    } catch (error) {
+        
     } catch (error) {
         return res.status(400).send(error);
     }
 });
 
 adminRouter.post('/verifyStudent/:id', adminMiddleware, async (req, res) => {
-adminRouter.post('/verifyStudent/:id', adminMiddleware, async (req, res) => {
     console.log(req.params.id);
-    const studentId = req.params.id;
     const studentId = req.params.id;
     try {
         const student = await Student.findById(studentId);
         if (!student) {
-        const student = await Student.findById(studentId);
-        if (!student) {
             return res.status(404).send("Student not found");
         }
-        if (student.isProfileVerified) {
         if (student.isProfileVerified) {
             return res.status(400).send("Student already verified");
         }
@@ -177,11 +153,10 @@ adminRouter.post('/verifyStudent/:id', adminMiddleware, async (req, res) => {
             await student.save();
         }
         else {
-        else {
             await Student.findByIdAndDelete(studentId);
             return res.status(400).send("Student not verified");
         }
-    } catch (error) {
+    } }catch (error) {
         return res.status(400).send(error);
     }
     return res.status(200).send("Student Verified");
@@ -196,10 +171,7 @@ adminRouter.get('/experiences', async (req, res) => {
         res.status(500).json({ error: "Failed to fetch experience", details: error.message });
     }
 });
-    } catch (error) {
-        res.status(500).json({ error: "Failed to fetch experience", details: error.message });
-    }
-});
+    
 
 adminRouter.post('/add-job', async (req, res) => {
     const parseResult = jobsSchema.safeParse(req.body);
@@ -216,9 +188,7 @@ adminRouter.post('/add-job', async (req, res) => {
         return res.status(200).json(job);
     } catch (error) {
         return res.status(500).json({ error: "Failed to add job", details: error.message });
-    } catch (error) {
-        return res.status(500).json({ error: "Failed to add job", details: error.message });
-    }
+    } 
 
 });
 
@@ -266,8 +236,6 @@ adminRouter.put('/update-job', async (req, res) => {
             { new: true }
         );
 
-        if (!updatedJob) {
-            return res.status(400).json({ error: "Job not found" });
         if (!updatedJob) {
             return res.status(400).json({ error: "Job not found" });
         }

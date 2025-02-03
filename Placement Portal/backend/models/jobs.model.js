@@ -28,6 +28,11 @@ const jobsSchema = new mongoose.Schema({
             ref: 'Student',
             required: false
         },
+        studentsPlaced: {
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: 'Student',
+            required: false
+        }
     }],
     doc: {
         type: String,

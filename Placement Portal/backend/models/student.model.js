@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
-import { IntrestedIn} from "../utils/placementEnums.js";
+import { IntrestedIn } from "../utils/placementEnums.js";
 
 const studentSchema = new mongoose.Schema({
-    vesEmail:{
+    vesEmail: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    password:{
+    password: {
         type: String,
         required: true
     },
@@ -22,15 +23,16 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dob:{
+    dob: {
         type: String,
-        required : true
-    },
-    contactNumber:{
-        type: Number,
         required: true
     },
-    alternativeContactNumber:{
+    contactNumber: {
+        type: Number,
+        required: true,
+        unique: true
+    },
+    alternativeContactNumber: {
         type: Number,
         required: false
     },
@@ -50,78 +52,81 @@ const studentSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    placementNumber:{
+    placementNumber: {
         type: Number,
-        default: null
+        default: null,
+        unique: true
     },
-    PRN:{
+    PRN: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
-    email:{
+    email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     placedAt: {
         type: String,
         default: null
     },
-    semCGPA:[
+    semCGPA: [
         {
-        sem: Number,
-        cgpa: Number
+            sem: Number,
+            cgpa: Number
         }
     ],
-    kts:[
+    kts: [
         {
             sem: Number,
             count: Number,
         }
     ],
-    liveKTs:{
+    liveKTs: {
         type: Number,
         required: true
     },
-    deadKTs:{
+    deadKTs: {
         type: Number,
         required: true
     },
-    marksInPercentage:{
+    marksInPercentage: {
         type: Number,
         required: true
     },
-    percentageIn12th:{
+    percentageIn12th: {
         type: Number,
         required: false
     },
-    percentageIn10th:{
+    percentageIn10th: {
         type: Number,
         required: false
     },
-    CET:{
+    CET: {
         type: String,
         required: false
     },
-    JEE:{
+    JEE: {
         type: String,
         required: false
     },
-    gap:{
+    gap: {
         type: Boolean,
         required: true
     },
-    DiplomaPercentage:{
+    DiplomaPercentage: {
         type: Number,
         required: false
     },
-    intrestedIn:{
+    intrestedIn: {
         type: [String],
         enum: IntrestedIn,
         required: true
     },
-    isProfileVerified : {
+    isProfileVerified: {
         type: Boolean,
-        default : false
+        default: false
     }
 });
 

@@ -9,6 +9,7 @@ import { Student } from '../models/student.model.js';
 import { Jobs } from '../models/jobs.model.js';
 import { Status, Branches } from '../utils/placementEnums.js';
 import bcrypt from 'bcrypt';
+import mongoose from 'mongoose';
 export const adminRouter = express.Router();
 
 export const StatusEnum = zod.enum([
@@ -237,3 +238,41 @@ adminRouter.put('/update-job', async (req, res) => {
     }
 
 });
+
+
+//To be tested
+adminRouter.post('/mark-placed',adminMiddleware,async(req,res)=>{
+    const {studentId , companyId , roleName}= req.body;
+    try{
+        const job = await Jobs.findOne({_id:companyId});
+        if(!job){
+            return res.status(400).json({error: "Job not found"});
+        }
+        const student = await Student.findOne({_id:studentId});
+        if(!student){
+            return res.status(400).json({error: "Student not found"});
+        }
+        const role = job.role.find(role => role.rolename === roleName);
+        if(!role){
+            return res.status(400).json({error: "Role not found"});
+        }
+        const session = await mongoose.startSession();
+        try{
+            session.startTransaction();
+            student.placed = true;
+            student.placedAt = job.companyName;
+            student.ctc = role.ctc;
+            await student.save();
+            role.studentsPlaced.push(studentId);
+            await job.save();
+        }catch(err){
+            await session.abortTransaction();
+            return res.status(500).json({error:"Error updating details of student and job",details:err.errors});
+        }finally{
+            session.endSession();
+        }
+        return res.status(200).json({message: "Student marked placed"});
+    }catch(err){
+        return res.status(500).json({ error: "Failed to mark placed", details: err.errors });
+    }
+}) 

@@ -10,6 +10,7 @@ import { Jobs } from '../models/jobs.model.js';
 import { Status, Branches } from '../utils/placementEnums.js';
 import bcrypt from 'bcrypt';
 import mongoose from 'mongoose';
+import sendEmail from '../utils/mails.js';
 export const adminRouter = express.Router();
 
 export const StatusEnum = zod.enum([
@@ -276,3 +277,27 @@ adminRouter.post('/mark-placed',adminMiddleware,async(req,res)=>{
         return res.status(500).json({ error: "Failed to mark placed", details: err.errors });
     }
 }) 
+
+adminRouter.post('/verify-profile-update',adminMiddleware,async(req,res)=>{
+    const {studentId , isProfileVerified , message} = req.body;
+    try{
+        const student = await Student.findOne({_id:studentId});
+        if(!student){
+            return res.status(400).json({error: "Student not found"});
+        }
+        if(isProfileVerified==false){
+            //send whatsapp message to student
+            //send email to student
+            try{
+                sendEmail(student.email,"Profile Update Rejected",message);
+            }catch(err){
+                return res.status(500).json({error: "Failed to send message",details:err.errors});
+            }
+        }
+        student.isProfileVerified = isProfileVerified;
+        await student.save();
+        return res.status(200).json({message: "Profile update verified"});
+    }catch(err){
+        return res.status(500).json({ error: "Failed to verify profile update", details: err.errors });
+    }
+})

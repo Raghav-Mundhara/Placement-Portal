@@ -17,9 +17,9 @@ function Login() {
 
     // Redirect based on role
     if (role === 'admin') {
-      navigate('/adminhome');
+      navigate('/admin-home');
     } else {
-      navigate('/studenthome');
+      navigate('/student-home');
     }
   };
 

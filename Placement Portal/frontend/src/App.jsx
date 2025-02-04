@@ -1,7 +1,7 @@
 
 import './App.css'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-// import Login from './pages/Login'
+import Login from './pages/Login'
 import StudentHome from './pages/StudentHome'
 import SignUp from './pages/SignUp'
 import Alumini from './pages/Alumini'
@@ -28,9 +28,9 @@ function App() {
         <Route path="/student-home" element={<StudentHome />} />
         <Route path="/admin-home" element={<AdminHome />} />
         <Route path="/alumini" element={<Alumini />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/" element={<Registration_1 />} />
+        <Route path="/studentregistration" element={<Registration_1 />} />
         <Route path="/register" element={<Registration_2 />} />
         {/* <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
         <Route path="/student-verification/:id" element={<StudentVerification />} />

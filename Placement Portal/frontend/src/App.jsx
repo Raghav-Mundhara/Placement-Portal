@@ -45,8 +45,6 @@ function App() {
         <Route path="/placement-statistics" element={<PlacementStatistics />} />
         <Route path="/admin-placement-statistics" element={<PlacementStatistics />} />
         <Route path="/quiz-categories" element={<QuizCategories />} />
-
-      
       </Routes>
     </BrowserRouter>
   )

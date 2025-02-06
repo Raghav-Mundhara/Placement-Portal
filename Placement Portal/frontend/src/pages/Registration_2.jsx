@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Registration_2 = () => {
   const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
   const [division, setDivision] = useState("");
   const [rollNo, setRollNo] = useState("");
@@ -20,6 +21,7 @@ const Registration_2 = () => {
     e.preventDefault();
 
     console.log("First Name:", firstName);
+    console.log("Middle Name:", middleName);
     console.log("Last Name:", lastName);
     console.log("Division:", division);
     console.log("Roll Number:", rollNo);
@@ -55,6 +57,15 @@ const Registration_2 = () => {
             placeholder="Enter your first name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+          <label className="font-bold text-gray-600">Middle Name</label>
+          <input
+            type="text"
+            className="p-2 border border-gray-400 rounded bg-white text-gray-900"
+            placeholder="Enter your last name"
+            value={middleName}
+            onChange={(e) => setMiddleName(e.target.value)}
             required
           />
           <label className="font-bold text-gray-600">Last Name</label>

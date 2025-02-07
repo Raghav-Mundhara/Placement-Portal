@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Import useNavigate hook
+import Button from '../components/button';
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -105,7 +106,7 @@ function Login() {
 
         <div className="mt-4 text-center">
           <span>Not registered? </span>
-          <button text="Register" onClick={handleSubmit1} />
+          <Button text="Register" onClick={handleSubmit1} />
         </div>
       </div>
     </div>

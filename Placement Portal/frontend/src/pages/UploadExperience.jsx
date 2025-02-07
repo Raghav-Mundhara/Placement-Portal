@@ -44,84 +44,94 @@ const UploadExperience = () => {
   return (
     <div className="bg-slate-100 dark:bg-gray-900 min-h-screen flex flex-col">
       <Navbar />
-      <div className="container mx-auto flex-grow p-4">
-        <h1 className="text-black dark:text-white text-2xl font-bold mb-4">
+      <div className="container mx-auto flex-grow p-6">
+        <h1 className="text-black dark:text-white text-2xl font-bold mb-6 text-center">
           Upload Your Placement Experience
         </h1>
-        <form onSubmit={handleSubmit} className="space-y-4">
+
+        <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 shadow-md p-6 rounded-lg max-w-lg mx-auto space-y-5">
           <div>
-            <label className="block text-black dark:text-gray-200">Company Name</label>
+            <label htmlFor="companyName" className="block text-black dark:text-gray-200 font-semibold">
+              Company Name
+            </label>
             <select
+              id="companyName"
               name="companyName"
               value={formData.companyName}
               onChange={handleChange}
-              className={`w-full p-2 border rounded ${
-                errors.companyName ? "border-red-500" : "dark:border-gray-700"
-              } bg-white dark:bg-gray-800 dark:text-gray-200`}
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.companyName ? "border-red-500 ring-red-400" : "border-gray-300 dark:border-gray-700 focus:ring-sky-500"
+              } bg-white dark:bg-gray-700 dark:text-gray-200`}
             >
               <option value="">Select Company</option>
               <option value="Company A">Company A</option>
               <option value="Company B">Company B</option>
             </select>
-            {errors.companyName && (
-              <span className="text-red-500 text-sm">{errors.companyName}</span>
-            )}
+            {errors.companyName && <span className="text-red-500 text-sm">{errors.companyName}</span>}
           </div>
+
           <div>
-            <label className="block text-black dark:text-gray-200">Academic Year</label>
+            <label htmlFor="academicYear" className="block text-black dark:text-gray-200 font-semibold">
+              Academic Year
+            </label>
             <select
+              id="academicYear"
               name="academicYear"
               value={formData.academicYear}
               onChange={handleChange}
-              className={`w-full p-2 border rounded ${
-                errors.academicYear ? "border-red-500" : "dark:border-gray-700"
-              } bg-white dark:bg-gray-800 dark:text-gray-200`}
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.academicYear ? "border-red-500 ring-red-400" : "border-gray-300 dark:border-gray-700 focus:ring-sky-500"
+              } bg-white dark:bg-gray-700 dark:text-gray-200`}
             >
               <option value="">Select Year</option>
               <option value="2024">2024</option>
               <option value="2025">2025</option>
             </select>
-            {errors.academicYear && (
-              <span className="text-red-500 text-sm">{errors.academicYear}</span>
-            )}
+            {errors.academicYear && <span className="text-red-500 text-sm">{errors.academicYear}</span>}
           </div>
+
           <div>
-            <label className="block text-black dark:text-gray-200">Description</label>
+            <label htmlFor="description" className="block text-black dark:text-gray-200 font-semibold">
+              Description
+            </label>
             <textarea
+              id="description"
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className={`w-full p-2 border rounded ${
-                errors.description ? "border-red-500" : "dark:border-gray-700"
-              } bg-white dark:bg-gray-800 dark:text-gray-200`}
               rows="4"
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 ${
+                errors.description ? "border-red-500 ring-red-400" : "border-gray-300 dark:border-gray-700 focus:ring-sky-500"
+              } bg-white dark:bg-gray-700 dark:text-gray-200`}
             ></textarea>
-            {errors.description && (
-              <span className="text-red-500 text-sm">{errors.description}</span>
-            )}
+            {errors.description && <span className="text-red-500 text-sm">{errors.description}</span>}
           </div>
+
           <div>
-            <label className="block text-black dark:text-gray-200">Attach File</label>
+            <label htmlFor="file" className="block text-black dark:text-gray-200 font-semibold">
+              Attach File
+            </label>
             <input
+              id="file"
               type="file"
               name="file"
               onChange={handleChange}
-              className={`w-full p-2 border rounded ${
-                errors.file ? "border-red-500" : "dark:border-gray-700"
-              } bg-white dark:bg-gray-800 dark:text-gray-200`}
+              className={`w-full p-2 border rounded-md focus:outline-none ${
+                errors.file ? "border-red-500 ring-red-400" : "border-gray-300 dark:border-gray-700 focus:ring-sky-500"
+              } bg-white dark:bg-gray-700 dark:text-gray-200`}
             />
-            {errors.file && (
-              <span className="text-red-500 text-sm">{errors.file}</span>
-            )}
+            {errors.file && <span className="text-red-500 text-sm">{errors.file}</span>}
           </div>
+
           <button
             type="submit"
-            className="bg-sky-500 dark:bg-sky-700 text-white px-4 py-2 rounded"
+            className="w-full bg-sky-500 dark:bg-sky-700 hover:bg-sky-600 text-white font-semibold py-2 rounded-md transition-all"
           >
             Share Experience
           </button>
         </form>
       </div>
+
       <Footer />
       {showModal && <SuccessModal onClose={() => setShowModal(false)} />}
     </div>

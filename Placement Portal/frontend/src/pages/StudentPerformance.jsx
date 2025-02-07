@@ -1,10 +1,13 @@
 import React from 'react';
 import CompanyProgress from '../components/CompanyProgress';
 import Logo from '../components/Logo';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Profile = ({ name, cgpa }) => (
   <>
     <Logo />
+    
     <div className="flex flex-col items-center md:flex-row md:items-center justify-center m-4 space-y-4 md:space-y-0 md:space-x-4">
       <div className="w-24 h-24 bg-gray-300 rounded-full overflow-hidden flex items-center justify-center shadow-md">
         <img
@@ -22,7 +25,10 @@ const Profile = ({ name, cgpa }) => (
 );
 
 const StudentPerformance = () => (
+  <>
+  <Navbar />
   <div className="p-4 bg-gray-100 min-h-screen">
+     
     <div className="bg-white p-4 md:p-6 rounded-lg shadow-md max-w-screen-lg mx-auto">
       <Profile name="ABC" cgpa="9.88" />
       <h3 className="text-lg md:text-2xl font-bold mb-4 text-center md:text-left">
@@ -50,7 +56,10 @@ const StudentPerformance = () => (
         />
       </div>
     </div>
+  
   </div>
+  <Footer />
+  </>
 );
 
 export default StudentPerformance;

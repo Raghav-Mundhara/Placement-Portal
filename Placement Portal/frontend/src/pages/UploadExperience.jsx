@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
+import AdminNavbar from "../components/AdminNavbar";
 import Footer from "../components/Footer";
 import SuccessModal from "../components/SuccessModal";
 
@@ -43,7 +43,7 @@ const UploadExperience = () => {
 
   return (
     <div className="bg-slate-100 dark:bg-gray-900 min-h-screen flex flex-col">
-      <Navbar />
+      <AdminNavbar />
       <div className="container mx-auto flex-grow p-4">
         <h1 className="text-black dark:text-white text-2xl font-bold mb-4">
           Upload Your Placement Experience

@@ -39,7 +39,7 @@ const Navbar = () => {
           <Link to="/about" className=" text-black dark:text-white">
             About Us
           </Link>
-          <Link to="/placement-statistics" className="text-black dark:text-white">
+          <Link to="/statistics" className="text-black dark:text-white">
             Placements Stats
           </Link>
           <Link to="/quiz-categories" className=" text-black dark:text-white">

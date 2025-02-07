@@ -18,7 +18,7 @@ const Registration_1 = () => {
     console.log('Email:', email);
     console.log('Password:', password);
 
-    navigate('/register');
+    navigate('/studentregister2');
   };
 
   return (

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Registration_2 = () => {
   const [firstName, setFirstName] = useState("");
@@ -15,6 +16,8 @@ const Registration_2 = () => {
   const [noOfKts, setNoOfKts] = useState("");
   const [semCgpa, setSemCgpa] = useState("");
   const [preferences, setPreferences] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,9 +37,10 @@ const Registration_2 = () => {
     console.log("Semester CGPA:", semCgpa);
     console.log("Placement Preference:", preferences);
 
-
-
     alert("Registration Successful!");
+
+    // Redirect to student profile page
+    navigate("/student-profile");
   };
 
   return (

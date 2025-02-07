@@ -19,7 +19,8 @@ import ViewExperience from './pages/ViewExperience'
 import OfferLetters from './pages/OfferLetters'
 import PlacementStatistics from './pages/PlacementStatistics'
 import QuizCategories from './pages/QuizCategories'
-
+import Login from './pages/login'
+import Statistics from './pages/studentplacementstas'
 
 function App() {  
   return (
@@ -30,8 +31,9 @@ function App() {
         <Route path="/alumini" element={<Alumini />} />
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/" element={<Registration_1 />} />
-        <Route path="/register" element={<Registration_2 />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/studentregister" element={<Registration_1 />} />
+        <Route path="/studentregister2" element={<Registration_2 />} />
         {/* <Route path="/admin-dashboard" element={<AdminDashboard />} /> */}
         <Route path="/student-verification/:id" element={<StudentVerification />} />
         <Route path="/admin-verification-dashboard" element={<AdminVerificationDashboard />} />
@@ -45,7 +47,7 @@ function App() {
         <Route path="/placement-statistics" element={<PlacementStatistics />} />
         <Route path="/admin-placement-statistics" element={<PlacementStatistics />} />
         <Route path="/quiz-categories" element={<QuizCategories />} />
-
+        <Route path="/statistics" element={<Statistics />} />
       
       </Routes>
     </BrowserRouter>

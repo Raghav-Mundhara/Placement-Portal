@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import Buttons from '../components/VerificationButtons';
+import AdminNavbar from '../components/AdminNavbar';
+import Footer from '../components/Footer';
 
 const StudentVerification = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -37,7 +39,9 @@ const StudentVerification = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 overflow-hidden">
+    
       <div className="bg-white p-8 sm:p-10 rounded-lg shadow-lg w-full max-w-3xl">
+        <AdminNavbar />
         <h2 className="text-3xl font-bold text-center mb-6 sm:mb-8">Student Verification</h2>
 
         <div className="flex flex-col space-y-4 sm:space-y-6">
@@ -79,10 +83,14 @@ const StudentVerification = () => {
               >
                 Go to Home
               </button>
+              
             </div>
+            <Footer />
           </div>
+  
         )}
       </div>
+      
     </div>
   );
 };

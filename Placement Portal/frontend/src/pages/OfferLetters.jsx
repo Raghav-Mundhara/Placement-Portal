@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import AdminNavbar from "../components/AdminNavbar";
 
 const OfferLetters = () => {
   const [file, setFile] = useState(null);
@@ -25,7 +25,7 @@ const OfferLetters = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-100 dark:bg-slate-900 text-black dark:text-white">
-      <Navbar />
+      <AdminNavbar />
 
       <main className="flex-grow pt-20 pb-10 flex items-center justify-center w-full">
         <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-md w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl">

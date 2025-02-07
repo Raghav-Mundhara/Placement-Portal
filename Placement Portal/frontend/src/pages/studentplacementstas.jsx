@@ -1,15 +1,15 @@
 import React from 'react'
-import AdminNavbar from '../components/AdminNavbar'
+import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-function PlacementStatistics() {
+function Statistics() {
   return (
     <div>
-      <AdminNavbar />
+      <Navbar />
       Placement Statistics Page!!
       <Footer />
     </div>
   )
 }
 
-export default PlacementStatistics
+export default Statistics

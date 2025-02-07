@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 import AdminNavbar from '../components/AdminNavbar';
-
+import Footer from '../components/Footer';
 const StudentDataPage = () => {
   const students = [
     'Student name 1',
@@ -25,8 +25,10 @@ const StudentDataPage = () => {
   };
 
   return (
+    <>
+    <AdminNavbar />
     <div className="bg-gray-100 p-4 min-h-screen overflow-hidden">
-      <AdminNavbar />
+      
 
       <main className="mt-8 overflow-hidden">
         <h1 className="text-2xl font-bold mb-4 text-center md:text-left">Student Data</h1>
@@ -110,7 +112,10 @@ const StudentDataPage = () => {
           </div>
         </div>
       )}
+      
     </div>
+    <Footer />
+    </>
   );
 };
 

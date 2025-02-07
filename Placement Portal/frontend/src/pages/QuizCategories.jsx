@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCode, faDatabase, faCloud, faLanguage, faCogs, faDesktop, faNetworkWired } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
-
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 const QuizCategories = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
@@ -27,9 +28,13 @@ const QuizCategories = () => {
   ];
 
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
+      
       <header className="w-full flex justify-between items-center mb-6">
         <div className="flex items-center gap-4">
+          
           <div className="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
             <img
               src="https://via.placeholder.com/40"
@@ -80,10 +85,15 @@ const QuizCategories = () => {
             <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700">
               Start Quiz
             </button>
+             
           </div>
         ))}
+        
       </div>
+      
     </div>
+    <Footer />
+    </>
   );
 };
 

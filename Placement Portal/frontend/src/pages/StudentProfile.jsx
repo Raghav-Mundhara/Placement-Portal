@@ -1,5 +1,5 @@
 import React from "react";
-
+import Footer from "../components/Footer";
 import ProfileSection from "../components/ProfileSection";
 import Navbar from "../components/Navbar";
 
@@ -12,6 +12,7 @@ const StudentProfile = () => {
         <ProfileSection />
         
       </div>
+      <Footer />
     </div>
   );
 };

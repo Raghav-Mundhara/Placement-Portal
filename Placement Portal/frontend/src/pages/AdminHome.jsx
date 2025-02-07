@@ -34,4 +34,4 @@ const AdminHome = () => {
     )
 }
 
-export default AdminHome
+export default AdminHome;

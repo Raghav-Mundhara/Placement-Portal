@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import AdminNavbar from "../components/AdminNavbar";
 import Footer from "../components/Footer";
 
 const ViewExperience = () => {
@@ -35,7 +35,7 @@ const ViewExperience = () => {
 
   return (
     <div className="bg-slate-100 dark:bg-slate-900 min-h-screen flex flex-col">
-      <Navbar />
+      <AdminNavbar/>
 
       <div className="container mx-auto flex-grow p-4">
         <div className="flex justify-between items-center mb-4">

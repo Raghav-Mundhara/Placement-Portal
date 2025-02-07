@@ -75,7 +75,7 @@ const Registration_1 = () => {
             type="submit"
             className="bg-blue-500 text-white py-3 px-4 w-4/5 rounded-md mt-4 text-lg hover:bg-blue-600 active:bg-blue-700 transition duration-300"
           >
-            Login
+            Submit
           </button>
         </form>
       </div>

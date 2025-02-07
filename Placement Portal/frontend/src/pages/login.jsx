@@ -19,7 +19,7 @@ function Login() {
     if (role === 'admin') {
       navigate('/admin-home');
     } else {
-      navigate('/studentregister');
+      navigate('/student-home');
     }
   };
 

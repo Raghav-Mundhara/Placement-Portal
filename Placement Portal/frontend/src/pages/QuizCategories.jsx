@@ -28,7 +28,8 @@ const QuizCategories = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
-      <header className="w-full flex justify-between items-center bg-white shadow-md p-4">
+      {/* Updated Header with Full Screen Width */}
+      <header className="w-screen flex justify-between items-center mb-6 bg-white shadow-md p-4">
         <div className="flex items-center gap-4">
           <div className="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
             <img
@@ -65,7 +66,7 @@ const QuizCategories = () => {
         </div>
       </header>
 
-      <h2 className="text-xl font-semibold text-gray-700 text-center mt-6 mb-4">
+      <h2 className="text-xl font-semibold text-gray-700 text-center mb-4">
         Ready to challenge yourself? Choose a category and start the quiz to test your knowledge!
       </h2>
 
@@ -88,3 +89,4 @@ const QuizCategories = () => {
 };
 
 export default QuizCategories;
+

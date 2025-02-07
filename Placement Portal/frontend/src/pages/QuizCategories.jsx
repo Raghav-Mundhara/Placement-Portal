@@ -1,18 +1,13 @@
-import React, { useState } from "react";  
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; 
-import { faCode, faDatabase, faCloud, faLanguage, faCogs, faDesktop, faNetworkWired } from "@fortawesome/free-solid-svg-icons";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCode, faDatabase, faCloud, faLanguage, faCogs, faDesktop, faNetworkWired, faUserCircle, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import Navbar from "../components/Navbar";
 
 const QuizCategories = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
-  const handleMouseEnter = () => {
-    setDropdownVisible(true);
-  };
-
-  const handleMouseLeave = () => {
-    setDropdownVisible(false);
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
   };
 
   const categories = [
@@ -27,54 +22,38 @@ const QuizCategories = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
-      <header className="w-full flex justify-between items-center mb-6">
-        <div className="flex items-center gap-4">
-          <div className="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center overflow-hidden">
-            <img
-              src="https://via.placeholder.com/40"
-              alt="Logo"
-              className="object-cover w-full h-full"
-            />
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center px-4 sm:px-6 overflow-x-hidden w-full">
+      <Navbar />
+      <header className="w-full flex flex-col sm:flex-row justify-between items-center mb-4 py-2 px-4 sm:px-6">
+        <div className="w-full flex flex-col sm:flex-row justify-between items-center mx-20">
+          <h1 className="text-2xl sm:text-2xl font-bold text-gray-800 text-center sm:text-left">
+            Quiz Dashboard
+          </h1>
+          <div className="relative flex items-center gap-1">
+          <FontAwesomeIcon icon={faUserCircle} className="text-gray-800 text-7xl sm:text-5xl cursor-pointer" />
+<FontAwesomeIcon icon={faCaretDown} className="text-gray-800 text-lg cursor-pointer" onClick={toggleDropdown} />
+
+            {dropdownVisible && (
+              <div className="absolute top-full mt-2 right-0 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                <ul className="py-2 text-sm text-gray-700">
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">View Past Quiz Scores</li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Attempted Quizzes</li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Quiz Performance Analytics</li>
+                  <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Reattempt Quizzes</li>
+                </ul>
+              </div>
+            )}
           </div>
-          <h1 className="text-5xl font-bold text-gray-800">Quiz Dashboard</h1>
-        </div>
-        <div 
-          className="relative flex items-center gap-2"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          <FontAwesomeIcon
-            icon={faUserCircle}
-            className="text-gray-800 text-7xl mr-6 cursor-pointer"
-          />
-          <FontAwesomeIcon
-            icon={faCaretDown}
-            className="text-gray-800 text-xl cursor-pointer"
-          />
-          {dropdownVisible && (
-            <div className="absolute top-full mt-2 right-0 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-              <ul className="py-2 text-sm text-gray-700">
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">View Past Quiz Scores</li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Attempted Quizzes</li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Quiz Performance Analytics</li>
-                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Reattempt Quizzes</li>
-              </ul>
-            </div>
-          )}
         </div>
       </header>
 
-      <h2 className="text-xl font-semibold text-gray-700 text-center mb-4">
+      <h2 className="text-lg sm:text-xl font-semibold text-gray-700 text-center mb-4">
         Ready to challenge yourself? Choose a category and start the quiz to test your knowledge!
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-screen-lg">
         {categories.map((category, index) => (
-          <div
-            key={index}
-            className={`p-6 rounded-lg shadow-lg text-white text-center ${category.color}`}
-          >
+          <div key={index} className={`p-6 rounded-lg shadow-lg text-white text-center ${category.color}`}>
             <FontAwesomeIcon icon={category.icon} className="text-4xl mb-4" />
             <h3 className="text-lg font-semibold mb-2">{category.name}</h3>
             <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700">

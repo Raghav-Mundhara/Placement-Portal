@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AdminNavbar from '../components/AdminNavbar';
 
 const Alumini = () => {
     const [branch, setBranch] = useState('Information Technology');
@@ -13,7 +14,9 @@ const Alumini = () => {
     };
 
     return (
-        <div className="p-4">
+        <div>
+            <AdminNavbar />
+            <div className="container mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Alumni Page</h1>
             <div className="flex space-x-4 mb-4">
                 <div>
@@ -61,7 +64,9 @@ const Alumini = () => {
                 </tbody>
             </table>
         </div>
-    );
+        
+        </div>
+);
 };
 
 export default Alumini;

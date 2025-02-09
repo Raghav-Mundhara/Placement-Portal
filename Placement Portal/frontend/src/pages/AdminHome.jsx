@@ -109,14 +109,14 @@ import AdminNavbar from "../components/AdminNavbar";
 import Footer from "../components/Footer";
 
 const announcements = [
-  "🚀 Dolat Capital is hiring for freshers!",
-  "📅 TCS Interview scheduled for 02/01/25.",
-  "📝 Mock Test starts tomorrow!",
-  "🏢 Infosys campus drive next week.",
-  "💡 Prepare for the Hackathon event on 10/01/25.",
-  "📄 Resume submission deadline extended to 15/01/25.",
-  "🎙 Seminar on AI and ML scheduled for 12/01/25.",
-  "💻 New coding challenges added to the portal.",
+  " Dolat Capital is hiring for freshers!",
+  " TCS Interview scheduled for 02/01/25.",
+  " Mock Test starts tomorrow!",
+  " Infosys campus drive next week.",
+  " Prepare for the Hackathon event on 10/01/25.",
+  " Resume submission deadline extended to 15/01/25.",
+  " Seminar on AI and ML scheduled for 12/01/25.",
+  " New coding challenges added to the portal.",
 ];
 
 const AdminHome = () => {

@@ -1,4 +1,3 @@
-
 import './App.css'
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import Login from './pages/Login'
@@ -19,6 +18,7 @@ import ViewExperience from './pages/ViewExperience'
 import OfferLetters from './pages/OfferLetters'
 import PlacementStatistics from './pages/PlacementStatistics'
 import QuizCategories from './pages/QuizCategories'
+import UploadJobs from './pages/UploadJobs'
 
 
 function App() {  
@@ -45,7 +45,7 @@ function App() {
         <Route path="/placement-statistics" element={<PlacementStatistics />} />
         <Route path="/admin-placement-statistics" element={<PlacementStatistics />} />
         <Route path="/quiz-categories" element={<QuizCategories />} />
-
+        <Route path="/upload-jobs" element={<UploadJobs />} />
       
       </Routes>
     </BrowserRouter>

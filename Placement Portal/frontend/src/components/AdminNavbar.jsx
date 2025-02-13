@@ -102,8 +102,8 @@ const AdminNavbar = () => {
             )}
           </div>
 
-          <Link to="/admin-profile" className="text-black dark:text-white">
-            Profile
+          <Link to="/alumini" className="text-black dark:text-white">
+            Alumini
           </Link>
 
           {/* Theme Toggle Button */}

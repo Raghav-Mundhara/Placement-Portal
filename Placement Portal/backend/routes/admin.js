@@ -1,8 +1,6 @@
 import express from 'express';
 import { Admin } from '../models/admin.model.js';
-import { Admin } from '../models/admin.model.js';
 import jwt from 'jsonwebtoken';
-import zod from 'zod';
 import zod from 'zod';
 import { adminMiddleware } from '../middlewares/admin.js';
 import { Student } from '../models/student.model.js';
